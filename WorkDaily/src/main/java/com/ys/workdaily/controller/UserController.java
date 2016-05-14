@@ -25,4 +25,12 @@ public class UserController {
 		return "showUser";
 	}
 	
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model model){
+		
+		
+		
+		return "index";
+	}
+	
 }
