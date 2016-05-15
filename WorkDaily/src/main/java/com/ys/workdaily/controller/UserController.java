@@ -20,17 +20,26 @@ public class UserController {
 	@RequestMapping("/showUser")
 	public String toIndex(HttpServletRequest request, Model model) {
 		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
+		User user = userService.getUserById(userId);
 		model.addAttribute("user", user);
 		return "showUser";
 	}
-	
+
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request, Model model){
-		
-		
-		
-		return "index";
+	public String login(HttpServletRequest request, Model model) {
+
+		String loginName = request.getParameter("username");
+		String password = request.getParameter("password");
+
+		User user = userService.getUserByNameAndPassword(loginName, password);
+
+		if (user != null) {
+			request.getSession().setAttribute("loginUser", user);
+			model.addAttribute("user", user);
+			return "item_ongoing";
+		} else {
+			return "login";
+		}
 	}
-	
+
 }

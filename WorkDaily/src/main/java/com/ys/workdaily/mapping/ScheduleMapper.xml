@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ys.workdaily.dao.IScheduleDao">
+	<resultMap id="BaseResultMap" type="com.ys.workdaily.pojo.Schedule">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="VARCHAR" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<result column="assignUser" property="assignUser" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="DATE" />
+		<result column="executeTime" property="executeTime" jdbcType="DATE" />
+		<result column="completeTime" property="completeTime" jdbcType="DATE" />
+		<result column="note" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, type, content,
+		status,level,operator,assignUser,createTime,executeTime,completeTime,note
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from schedule
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByUserAndStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from schedule
+		where operator = #{operator,jdbcType=VARCHAR} and status
+		= #{status,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		schedule
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.ys.workdaily.pojo.Schedule">
+		insert into schedule (id,
+		type, content,
+		status,level,operator,assignUser,createTime,executeTime,completeTime,note)
+		values (
+		#{id,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{level,jdbcType=VARCHAR},
+		#{operator,jdbcType=VARCHAR},
+		#{assignUser,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE},
+		#{executeTime,jdbcType=DATE},
+		#{completeTime,jdbcType=DATE},
+		#{note,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ys.workdaily.pojo.Schedule">
+		update schedule
+		set
+		status = #{status,jdbcType=VARCHAR},
+		executeTime = #{executeTime,jdbcType=DATE},
+		completeTime = #{completeTime,jdbcType=DATE}
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

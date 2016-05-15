@@ -2,16 +2,27 @@ package com.ys.workdaily.pojo;
 
 public class User {
 
-	private Integer id;
+	private String id;
 	private String userName;
 	private String password;
 	private Integer age;
+	
+	public User() {
+		
+	}
 
-	public Integer getId() {
+	public User(String id, String userName, String password, Integer age) {
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.age = age;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

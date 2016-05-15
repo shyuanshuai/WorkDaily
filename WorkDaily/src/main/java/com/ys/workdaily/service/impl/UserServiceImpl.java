@@ -18,4 +18,8 @@ public class UserServiceImpl implements IUserService {
 		return userDao.selectByPrimaryKey(userId);
 	}
 
+	public User getUserByNameAndPassword(String userName, String password) {
+		return userDao.selectByNameAndPassword(userName, password);
+	}
+
 }
