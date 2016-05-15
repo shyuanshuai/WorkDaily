@@ -50,5 +50,11 @@ public class UserController {
 			return "login";
 		}
 	}
+	
+	@RequestMapping("/loginOff")
+	public String loginOff(HttpServletRequest request, Model model) {
+		request.getSession().removeAttribute("loginUser");
+		return "login";
+	}
 
 }
