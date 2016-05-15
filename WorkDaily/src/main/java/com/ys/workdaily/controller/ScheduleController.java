@@ -1,5 +1,6 @@
 package com.ys.workdaily.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -71,6 +72,44 @@ public class ScheduleController {
 		} else {
 			return "item_create";
 		}
+	}
+	
+	@RequestMapping("/deleteItem")
+	public String deleteItem(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		scheduleService.deleteByPrimaryKey(id);
+		User user = (User) request.getSession().getAttribute("loginUser");
+		List<Schedule> schedules = scheduleService.selectByUserAndStatus(user.getUserName(), "待办事项");
+		model.addAttribute("schedules", schedules);
+		return "item_plan";
+	}
+
+	@RequestMapping("/updateItemToPlan")
+	public String updateItemToPlan(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		Schedule schedule = scheduleService.selectByPrimaryKey(id);
+		schedule.setStatus("正在进行");
+		schedule.setExecuteTime(new Date());
+		scheduleService.updateByPrimaryKey(schedule);
+
+		User user = (User) request.getSession().getAttribute("loginUser");
+		List<Schedule> schedules = scheduleService.selectByUserAndStatus(user.getUserName(), "待办事项");
+		model.addAttribute("schedules", schedules);
+		return "item_plan";
+	}
+
+	@RequestMapping("/updateItemToComplete")
+	public String updateItemToComplete(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		Schedule schedule = scheduleService.selectByPrimaryKey(id);
+		schedule.setStatus("完成事项");
+		schedule.setCompleteTime(new Date());
+		scheduleService.updateByPrimaryKey(schedule);
+
+		User user = (User) request.getSession().getAttribute("loginUser");
+		List<Schedule> schedules = scheduleService.selectByUserAndStatus(user.getUserName(), "正在进行");
+		model.addAttribute("schedules", schedules);
+		return "item_ongoing";
 	}
 
 }

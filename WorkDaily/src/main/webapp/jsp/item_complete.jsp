@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -51,9 +52,10 @@
 
           <h2 class="sub-header">已完成事项</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
               <thead>
                 <tr>
+           		  <th>序号</th>
                   <th>事项类型</th>
                   <th>事项内容</th>
                   <th>状态</th>
@@ -67,17 +69,18 @@
                 </tr>
               </thead>
               <tbody>
-              	<c:forEach items="${schedules}" var="schedule">
+              	<c:forEach items="${schedules}" var="schedule" varStatus="xh">
 					<tr>
+					  <td>${xh.count}</td>
 	                  <td>${schedule.type}</td>
 	                  <td>${schedule.content}</td>
 	                  <td>${schedule.status}</td>
 	                  <td>${schedule.level}</td>
 	                  <td>${schedule.operator}</td>
 	                  <td>${schedule.assignUser}</td>
-	                  <td>${schedule.createTime}</td>
-	                  <td>${schedule.executeTime}</td>
-	                  <td>${schedule.completeTime}</td>
+	                  <td><fmt:formatDate value="${schedule.createTime}" type="date"/></td>
+	                  <td><fmt:formatDate value="${schedule.executeTime}" type="date"/></td>
+	                  <td><fmt:formatDate value="${schedule.completeTime}" type="date"/></td>
 	                  <td>${schedule.note}</td>
 	                </tr>
 			 	</c:forEach>
@@ -88,7 +91,4 @@
       </div>
     </div>
   </body>
-<script type="text/javascript">
-
-</script>
 </html>
