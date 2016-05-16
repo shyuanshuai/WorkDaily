@@ -37,14 +37,10 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li><a
-						href="<%=request.getContextPath()%>/schedule/itemOngoing?">正在进行</a></li>
-					<li class="active"><a
-						href="<%=request.getContextPath()%>/schedule/itemPlan?">待办事项</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/schedule/itemComplete?">完成事项</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/schedule/itemCreate?edit=0">新建事项</a></li>
+					<li><a href="<%=request.getContextPath()%>/schedule/itemCreate?edit=0">新建事项</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/schedule/itemPlan?">待办事项</a></li>
+					<li><a href="<%=request.getContextPath()%>/schedule/itemOngoing?">正在进行</a></li>
+					<li><a href="<%=request.getContextPath()%>/schedule/itemComplete?">完成事项</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
 					<li><a href="">用户信息</a></li>
