@@ -54,7 +54,7 @@
 
 				<h2 class="sub-header">计划事项</h2>
 				<div class="table-responsive">
-					<table class="table table-striped table-hover">
+					<table class="table table-striped table-hover table-bordered">
 						<thead>
 							<tr>
 								<th>序号</th>
@@ -95,7 +95,4 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	
-</script>
 </html>
