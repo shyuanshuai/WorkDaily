@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="/tags" prefix="date"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -79,7 +79,7 @@
 									<td>${schedule.level}</td>
 									<td>${schedule.operator}</td>
 									<td>${schedule.assignUser}</td>
-									<td><fmt:formatDate value="${schedule.createTime}" type="date"/></td>
+									<td><date:date value="${schedule.createTime}" /></td>
 									<td>${schedule.note}</td>
 									<td><button type="button" class="btn btn-primary btn-xs"
 											onclick="javascript:window.location.href='<%=request.getContextPath()%>/schedule/updateItemToPlan?id=${schedule.id}';">执行任务</button>

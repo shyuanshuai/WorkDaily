@@ -1,6 +1,5 @@
 package com.ys.workdaily.pojo;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Schedule {
@@ -12,17 +11,17 @@ public class Schedule {
 	private String level;
 	private String operator;
 	private String assignUser;
-	private Date createTime;
-	private Date executeTime;
-	private Date completeTime;
+	private long createTime;
+	private long executeTime;
+	private long completeTime;
 	private String note;
 
 	public Schedule() {
 		this.id = UUID.randomUUID().toString();
 		this.status = "待办事项";
-		this.createTime = new Date();
-		this.executeTime = null;
-		this.completeTime = null;
+		this.createTime = System.currentTimeMillis();
+		this.executeTime = 0;
+		this.completeTime = 0;
 	}
 
 	public Schedule(String type, String content, String level, String operator, String assignUser, String note) {
@@ -33,9 +32,9 @@ public class Schedule {
 		this.level = level;
 		this.operator = operator;
 		this.assignUser = assignUser;
-		this.createTime = new Date();
-		this.executeTime = null;
-		this.completeTime = null;
+		this.createTime = System.currentTimeMillis();
+		this.executeTime = 0;
+		this.completeTime = 0;
 		this.note = note;
 	}
 
@@ -95,27 +94,27 @@ public class Schedule {
 		this.assignUser = assignUser;
 	}
 
-	public Date getCreateTime() {
+	public long getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(long createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getExecuteTime() {
+	public long getExecuteTime() {
 		return executeTime;
 	}
 
-	public void setExecuteTime(Date executeTime) {
+	public void setExecuteTime(long executeTime) {
 		this.executeTime = executeTime;
 	}
 
-	public Date getCompleteTime() {
+	public long getCompleteTime() {
 		return completeTime;
 	}
 
-	public void setCompleteTime(Date completeTime) {
+	public void setCompleteTime(long completeTime) {
 		this.completeTime = completeTime;
 	}
 

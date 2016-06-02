@@ -24,14 +24,16 @@ public class UserController {
 	@Resource
 	private IScheduleService scheduleService;
 
-	@RequestMapping("/showUser")
-	public String toIndex(HttpServletRequest request, Model model) {
-		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
-	}
-
+	/**
+	 * 系统登录
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:32:21
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model) {
 
@@ -50,7 +52,17 @@ public class UserController {
 			return "login";
 		}
 	}
-	
+
+	/**
+	 * 退出系统
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:32:35
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/loginOff")
 	public String loginOff(HttpServletRequest request, Model model) {
 		request.getSession().removeAttribute("loginUser");

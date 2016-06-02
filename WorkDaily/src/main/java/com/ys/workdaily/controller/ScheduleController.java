@@ -1,6 +1,5 @@
 package com.ys.workdaily.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,6 +20,16 @@ public class ScheduleController {
 	@Resource
 	private IScheduleService scheduleService;
 
+	/**
+	 * 查询正在进行的项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:28:14
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/itemOngoing")
 	public String itemOngoing(HttpServletRequest request, Model model) {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -30,6 +39,16 @@ public class ScheduleController {
 		return "item_ongoing";
 	}
 
+	/**
+	 * 查询计划中的项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:28:45
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/itemPlan")
 	public String itemPlan(HttpServletRequest request, Model model) {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -39,6 +58,16 @@ public class ScheduleController {
 		return "item_plan";
 	}
 
+	/**
+	 * 查询已完成的项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:29:12
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/itemComplete")
 	public String itemComplete(HttpServletRequest request, Model model) {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -48,6 +77,16 @@ public class ScheduleController {
 		return "item_complete";
 	}
 
+	/**
+	 * 创建项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:29:27
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/itemCreate")
 	public String itemCreate(HttpServletRequest request, Model model) {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -73,7 +112,17 @@ public class ScheduleController {
 			return "item_create";
 		}
 	}
-	
+
+	/**
+	 * 删除项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:29:41
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/deleteItem")
 	public String deleteItem(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
@@ -84,12 +133,22 @@ public class ScheduleController {
 		return "item_plan";
 	}
 
+	/**
+	 * 更新项目状态为正在进行
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:29:57
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/updateItemToPlan")
 	public String updateItemToPlan(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 		Schedule schedule = scheduleService.selectByPrimaryKey(id);
 		schedule.setStatus("正在进行");
-		schedule.setExecuteTime(new Date());
+		schedule.setExecuteTime(System.currentTimeMillis());
 		scheduleService.updateByPrimaryKey(schedule);
 
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -98,12 +157,22 @@ public class ScheduleController {
 		return "item_plan";
 	}
 
+	/**
+	 * 将项目状态更新为完成项目
+	 * 
+	 * @author YuanShuai E-mail:shyuanshuai@163.com
+	 * @date 2016年6月2日 下午9:31:29
+	 *
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/updateItemToComplete")
 	public String updateItemToComplete(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
 		Schedule schedule = scheduleService.selectByPrimaryKey(id);
 		schedule.setStatus("完成事项");
-		schedule.setCompleteTime(new Date());
+		schedule.setCompleteTime(System.currentTimeMillis());
 		scheduleService.updateByPrimaryKey(schedule);
 
 		User user = (User) request.getSession().getAttribute("loginUser");

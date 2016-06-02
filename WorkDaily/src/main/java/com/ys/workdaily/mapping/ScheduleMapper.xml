@@ -9,9 +9,9 @@
 		<result column="level" property="level" jdbcType="VARCHAR" />
 		<result column="operator" property="operator" jdbcType="VARCHAR" />
 		<result column="assignUser" property="assignUser" jdbcType="VARCHAR" />
-		<result column="createTime" property="createTime" jdbcType="DATE" />
-		<result column="executeTime" property="executeTime" jdbcType="DATE" />
-		<result column="completeTime" property="completeTime" jdbcType="DATE" />
+		<result column="createTime" property="createTime" jdbcType="DOUBLE" />
+		<result column="executeTime" property="executeTime" jdbcType="DOUBLE" />
+		<result column="completeTime" property="completeTime" jdbcType="DOUBLE" />
 		<result column="note" property="note" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
@@ -50,9 +50,9 @@
 		#{level,jdbcType=VARCHAR},
 		#{operator,jdbcType=VARCHAR},
 		#{assignUser,jdbcType=VARCHAR},
-		#{createTime,jdbcType=DATE},
-		#{executeTime,jdbcType=DATE},
-		#{completeTime,jdbcType=DATE},
+		#{createTime,jdbcType=DOUBLE},
+		#{executeTime,jdbcType=DOUBLE},
+		#{completeTime,jdbcType=DOUBLE},
 		#{note,jdbcType=VARCHAR}
 		)
 	</insert>
@@ -60,8 +60,8 @@
 		update schedule
 		set
 		status = #{status,jdbcType=VARCHAR},
-		executeTime = #{executeTime,jdbcType=DATE},
-		completeTime = #{completeTime,jdbcType=DATE}
+		executeTime = #{executeTime,jdbcType=DOUBLE},
+		completeTime = #{completeTime,jdbcType=DOUBLE}
 		where id =
 		#{id,jdbcType=VARCHAR}
 	</update>

@@ -64,13 +64,6 @@
 				      </select>
 			      </div>
 			   </div>
-			   <div class="form-group">
-			      <label for="content" class="col-sm-2 control-label">事项内容</label>
-			      <div class="col-sm-8">
-			         <input type="text" class="form-control" name="content" 
-			            placeholder="请输入待办事项内容">
-			      </div>
-			   </div>
 			   
 			   <div class="form-group">
 			      <label for="level" class="col-sm-2 control-label">事项级别</label>
@@ -92,10 +85,16 @@
 			   </div>
 			   
 			   <div class="form-group">
+			      <label for="content" class="col-sm-2 control-label">事项内容</label>
+			      <div class="col-sm-8">
+					 <textarea class="form-control" rows="3" name="content"></textarea>
+			      </div>
+			   </div>
+			   
+			   <div class="form-group">
 			      <label for="note" class="col-sm-2 control-label">事项备注</label>
 			      <div class="col-sm-8">
-			         <input type="text" class="form-control" name="note" 
-			            placeholder="请输入事项备注">
+			      	<textarea class="form-control" rows="3" name="note"></textarea>
 			      </div>
 			   </div>
 			   
